@@ -76,6 +76,8 @@ class DeployConfig(Config):
 # but 
 environment = os.environ.get("FLASK_ENV") 
 
+print(f"Environment: {environment}")
+
 if environment == "production":
     app_config = ProductionConfig()
     print('Production Config Loaded')
