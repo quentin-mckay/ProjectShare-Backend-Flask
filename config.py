@@ -43,14 +43,13 @@ class ProductionConfig(Config):
     
     @property
     def SQLALCHEMY_DATABASE_URI(self):
-        # access to .env and get the value of DATABASE_URL,
-        # the variable name can be any but needs to match
-        value = os.environ.get("RENDER_DATABASE_URI")
+        
+        value = os.environ.get("RENDER_DATABASE_URI") # from external
         
         print(f"Database: {value}")
 
         if not value:
-            raise ValueError("RENDER_DATABASE_URI is not set")
+            raise ValueError("RENDER_DATABASE_URI is not set") # from external
 
         return value
 
@@ -59,14 +58,30 @@ class TestingConfig(Config):
     TESTING = True
 
 
+class DeployConfig(Config):
+    @property
+    def SQLALCHEMY_DATABASE_URI(self):
+        
+        value = os.environ.get("RENDER_INTERNAL_DATABASE_URI")
+        
+        print(f"Render Internal Database: {value}")
 
-environment = os.environ.get("FLASK_ENV")
+        if not value:
+            raise ValueError("RENDER_INTERNAL_DATABASE_URI is not set")
+
+        return value
+
+
+# seems to come from .flaskenv only on local
+# but 
+environment = os.environ.get("FLASK_ENV") 
 
 if environment == "production":
     app_config = ProductionConfig()
     print('Production Config Loaded')
-elif environment == "testing":
-    app_config = TestingConfig()
+elif environment == "deploy":
+    app_config = DeployConfig()
+    print('Deployment Config Loaded')
 else:
     app_config = DevelopmentConfig()
     print('Development Config Loaded')
