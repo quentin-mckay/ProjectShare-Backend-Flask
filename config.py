@@ -1,7 +1,9 @@
 import os
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 load_dotenv()
+
+print(dotenv_values())
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -11,16 +13,7 @@ class Config:
 
     JSON_SORT_KEYS = False
 
-    # @property
-    # def SQLALCHEMY_DATABASE_URI(self):
-    #     # access to .env and get the value of DATABASE_URL,
-    #     # the variable name can be any but needs to match
-    #     value = os.environ.get("DATABASE_URI")
-
-    #     if not value:
-    #         raise ValueError("DATABASE_URI is not set")
-
-    #     return value
+    
 
 
 class DevelopmentConfig(Config):
@@ -88,3 +81,16 @@ else:
     app_config = DevelopmentConfig()
     print('Development Config Loaded')
 
+
+
+
+# @property
+    # def SQLALCHEMY_DATABASE_URI(self):
+    #     # access to .env and get the value of DATABASE_URL,
+    #     # the variable name can be any but needs to match
+    #     value = os.environ.get("DATABASE_URI")
+
+    #     if not value:
+    #         raise ValueError("DATABASE_URI is not set")
+
+    #     return value
