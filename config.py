@@ -50,7 +50,7 @@ class ProductionConfig(Config):
         print(f"Database: {value}")
 
         if not value:
-            raise ValueError("DATABASE_URI is not set")
+            raise ValueError("RENDER_DATABASE_URI is not set")
 
         return value
 
