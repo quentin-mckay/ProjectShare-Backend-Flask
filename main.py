@@ -11,7 +11,7 @@ bcrypt = Bcrypt()
 jwt = JWTManager()
 cors = CORS()
 
-def create_app():
+def create_app(environ, start_response):
     
     app = Flask(__name__)
     
@@ -38,4 +38,4 @@ def create_app():
     
     
     
-    return app
+    return app(environ, start_response)
