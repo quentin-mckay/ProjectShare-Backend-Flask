@@ -1,3 +1,6 @@
 venv/
 .env
 __pycache__/
+
+commands_dev.py
+dev_notes.md
