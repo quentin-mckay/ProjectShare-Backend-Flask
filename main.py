@@ -15,9 +15,6 @@ def create_app():
     
     app = Flask(__name__)
     
-    # still wouldn't allow post requests without preflight(?) stuff
-    # cors.init_app(app, resources={r"/*": {"origins": "*", "methods": "*"}})
-    
     # cors.init_app(app)
     CORS(app) # this worked too
     
@@ -40,8 +37,5 @@ def create_app():
         app.register_blueprint(controller)
     
     
-    # @app.route('/')
-    # def index():
-    #     return 'hello world'
     
     return app

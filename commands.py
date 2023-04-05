@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from datetime import date
+from datetime import date, datetime
 
 from main import db
 from main import bcrypt
@@ -51,7 +51,7 @@ def seed():
         github_url="https://github.com/quentin-mckay/Code-Syntax-Highlighter-Ed",
         demo_url="https://chrome.google.com/webstore/detail/code-syntax-highlighter-f/cmbplgilmheonekccfhdoljbaenlkhff",
         image_url="https://github.com/quentin-mckay/Code-Syntax-Highlighter-Ed/blob/master/images/512.png?raw=true",
-        
+        date=datetime(2023, 3, 2),
         user=user1
     ) # user field comes from User model backref
     project_textimage = Project(
@@ -60,6 +60,7 @@ def seed():
         github_url="https://github.com/quentin-mckay/OpenAI-Image-Generator-React-Flask",
         demo_url="https://openai-image-generator-react-frontend.onrender.com/",
         image_url="https://res.cloudinary.com/dnd7nhycm/image/upload/v1680230736/dalle3_icqy36.png",
+        date=datetime(2023, 2, 4),
         user=user2
     )
     project_converter = Project(
@@ -68,6 +69,7 @@ def seed():
         github_url="https://github.com/quentin-mckay/Base-Converter-PyScript",
         demo_url="https://base-converter-pyscript.onrender.com/",
         image_url="https://github.com/quentin-mckay/Base-Converter-PyScript/raw/master/images/app-screenshot.jpg",
+        date=datetime(2023, 2, 16),
         user=user2
     )
     project_pendulum = Project(
@@ -76,7 +78,18 @@ def seed():
         github_url="https://github.com/quentin-mckay/Pendulum-Wave",
         demo_url="https://pendulum-wave.netlify.app/",
         image_url="https://github.com/quentin-mckay/Pendulum-Wave/raw/main/img/screenshot.jpg",
-        date=date.today(),
+        # date=date.today(),
+        date=datetime(2022, 6, 27),
+        user=user1
+    )
+    project_termina = Project(
+        title="World Cup Country Quiz",
+        description="Pendulum wave audio-visualization with MIDI out",
+        github_url="https://github.com/quentin-mckay/Pendulum-Wave",
+        demo_url="https://pendulum-wave.netlify.app/",
+        image_url="https://github.com/quentin-mckay/Pendulum-Wave/raw/main/img/screenshot.jpg",
+        # date=date.today(),
+        date=datetime(2022, 6, 27),
         user=user1
     )
     
@@ -123,7 +136,7 @@ def seed():
     project_pendulum.tags.append(tag_p5)
     project_pendulum.tags.append(tag_webmidi)
 
-    db.session.add_all([tag_react, tag_tailwind, tag_flask])
+    db.session.add_all([tag_react, tag_tailwind, tag_flask, tag_python, tag_javascript, tag_webaudio, tag_webmidi, tag_p5])
     db.session.commit()
 
 
